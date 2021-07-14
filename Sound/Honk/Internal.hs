@@ -1,6 +1,6 @@
-{-# LANGUAGE CPP, ForeignFunctionInterface, InterruptibleFFI #-}
+{-# LANGUAGE CPP,ForeignFunctionInterface, InterruptibleFFI #-}
 
--- | Low level FFI interface. You should rarely need to use this directly.
+-- | Low level FFI interface. You should rarely need to use this directly. 
 
 module Sound.Honk.Internal
     (
@@ -29,7 +29,7 @@ newtype BeepFd = BeepFd CInt
 -- Use 'withBeepFd' instead if possible, since it keeps track of closing
 -- the handle automatically.
 beepOpen :: IO BeepFd
-beepOpen = BeepFd <$> throwErrnoIfMinus1 "beepOpen" c_beepOpen
+beepOpen = BeepFd <$> throwErrnoIfMinus1 "beep_open" c_beepOpen
 
 -- | Perform a beep.
 beepDo :: BeepFd   -- ^ A console handle, as returned by 'beepOpen'
@@ -49,7 +49,7 @@ beepClose (BeepFd fd) = c_beepClose fd
 withBeepFd :: (BeepFd -> IO a) -> IO a
 withBeepFd = bracket beepOpen beepClose
 
-foreign import ccall "honk.h beep_open"
+foreign import ccall "honk-windows.c beep_open"
     c_beepOpen :: IO CInt
 
 foreign import ccall interruptible "honk.h beep_do"

@@ -2,7 +2,7 @@
 --
 -- Here's an example:
 --
--- > simpleBeep = play [Note 1.0 440]
+-- > simpleBeep = play [Pitch 1.0 440]
 --
 -- For more examples, see the readme.
 
@@ -24,12 +24,12 @@ import Sound.Honk.Internal
 import Sound.Honk.Types
 import Sound.Honk.Util
 
--- | Play multiple notes in order, one after the other.
-play :: [Note] -> IO ()
-play notes = withBeepFd run
+-- | Play multiple Pitchs in order, one after the other.
+play :: [Pitch] -> IO ()
+play pitchs = withBeepFd run
   where
-    run handle = mapM_ (\(Note dur freq) -> beepDo handle dur freq) notes
+    run handle = mapM_ (\(Pitch dur freq) -> beepDo handle dur freq) pitchs
 
--- | Play a single note.
-playOne :: Note -> IO ()
+-- | Play a single Pitch.
+playOne :: Pitch -> IO ()
 playOne = play . (:[])

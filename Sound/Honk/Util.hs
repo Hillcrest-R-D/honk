@@ -6,11 +6,11 @@ module Sound.Honk.Util
     , loop
     ) where
 
--- | Convert a frequency to a MIDI note value.
+-- | Convert a frequency to a MIDI Pitch value.
 freqToMidi :: Floating a => a -> a
 freqToMidi n = 69 + 12 * log2 (n / 440)
 
--- | Convert a MIDI note value to a frequency.
+-- | Convert a MIDI Pitch value to a frequency.
 midiToFreq :: Floating a => a -> a
 midiToFreq n = 440 * 2 ** ((n - 69) / 12)
 

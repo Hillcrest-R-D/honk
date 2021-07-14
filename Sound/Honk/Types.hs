@@ -1,10 +1,10 @@
 -- | Core data types used by Honk.
 
 module Sound.Honk.Types
-    ( Note(..)
+    ( Pitch(..)
     ) where
 
--- | Represents a single note, with a duration in seconds and a
+-- | Represents a single Pitch, with a duration in seconds and a
 -- frequency in hertz.
-data Note = Note { duration :: Rational, frequency :: Double }
+data Pitch = Pitch { duration :: Rational, frequency :: Double }
     deriving (Eq, Ord, Show)
